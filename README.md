@@ -129,14 +129,3 @@ model/model.pkl
 
 MCA Student | Software Developer Enthusiast
 
-### Skills
-- Python
-- Java
-- SQL
-- Machine Learning
-- Flask
-- Web Development
-
-## 📜 License
-
-This project is developed for educational and learning purposes only.
