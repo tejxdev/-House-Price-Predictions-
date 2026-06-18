@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Price Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 60%;
+            max-width: 600px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        form {
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1em;
+        }
+        .field-description {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        input[type="number"] {
+            padding: 12px;
+            margin-bottom: 10px;
+            width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+        }
+        input[type="number"]:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+            outline: none;
+        }
+        input[type="submit"] {
+            padding: 15px;
+            margin-top: 30px;
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+        }
+        input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        h2 {
+            margin-top: 30px;
+            color: #333;
+            font-size: 1.5em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏠 मकान की कीमत का अनुमान (House Price Prediction)</h1>
+        <form action="/predict" method="post">
+            <label for="RM">🏠 कमरों की संख्या (Number of Rooms)</label>
+            <div class="field-description">औसत कमरे प्रति मकान | Average rooms per dwelling</div>
+            <input type="number" name="RM" step="0.1" placeholder="जैसे: 6.5" required>
+            
+            <label for="AGE">🏛️ पुरानी इमारतों का अनुपात (Age of Building)</label>
+            <div class="field-description">1940 से पहले बनी इकाइयों का प्रतिशत | % of units built before 1940</div>
+            <input type="number" name="AGE" step="0.1" placeholder="जैसे: 65.2" required>
+            
+            <label for="DIS">📍 रोजगार केंद्रों की दूरी (Distance to Employment)</label>
+            <div class="field-description">बोस्टन के 5 मुख्य रोजगार केंद्रों तक वजन वाली दूरी | Weighted distance to Boston employment centers</div>
+            <input type="number" name="DIS" step="0.1" placeholder="जैसे: 4.09" required>
+            
+            <label for="TAX">💰 संपत्ति कर दर (Property Tax Rate)</label>
+            <div class="field-description">प्रति $10,000 पर संपत्ति कर | Full-value property tax rate per $10,000</div>
+            <input type="number" name="TAX" step="0.1" placeholder="जैसे: 296.0" required>
+            
+            <label for="PTRATIO">👨‍🎓 शिक्षक-छात्र अनुपात (Pupil-Teacher Ratio)</label>
+            <div class="field-description">शहर में प्रति शिक्षक छात्र संख्या | Pupils per teacher in the town</div>
+            <input type="number" name="PTRATIO" step="0.1" placeholder="जैसे: 15.3" required>
+            
+            <input type="submit" value="💰 कीमत का अनुमान लगाएं (Predict Price)">
+        </form>
+        <h2>{{ prediction_text }}</h2> <!-- This line is very important -->
+    </div>
+</body>
+</html>
